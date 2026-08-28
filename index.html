@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terraformer T-800: Regenerador de Suelos Portátil - Realidad Aumentada</title>
+    <!-- Incluye el componente de visualización de modelos 3D <model-viewer> de Google -->
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8f0; /* Tono verde muy claro */
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            background-color: #2e7d32; /* Verde bosque */
+            color: white;
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        main {
+            max-width: 1200px;
+            width: 90%;
+            margin: 40px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .section {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        #model-section {
+            flex-direction: row;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        model-viewer {
+            width: 100%;
+            height: 500px;
+            background-color: #eee;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid #ccc;
+        }
+
+        /* Estilos para el botón de RA */
+        #ar-button {
+            background-color: #388e3c;
+            color: white;
+            border-radius: 4px;
+            border: none;
+            position: absolute;
+            bottom: 16px;
+            right: 16px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            z-index: 100;
+        }
+
+        #ar-button:active {
+            background-color: #2e7d32;
+        }
+
+        #ar-button:focus {
+            outline: none;
+        }
+
+        /* Estilos para el banner de ayuda de RA */
+        #ar-prompt {
+            position: absolute;
+            left: 50%;
+            bottom: 16px;
+            transform: translateX(-50%);
+            display: none;
+        }
+
+        model-viewer[ar-status="session-started"] > #ar-prompt {
+            display: block;
+        }
+
+        #ar-prompt img {
+            animation: circle 4s linear infinite;
+        }
+
+        @keyframes circle {
+            from { transform: translateX(-50%) rotate(0deg) translateX(50px) rotate(0deg); }
+            to   { transform: translateX(-50%) rotate(360deg) translateX(50px) rotate(-360deg); }
+        }
+
+        .story-content {
+            flex: 1;
+        }
+
+        .story-content h2 {
+            margin-top: 0;
+            color: #2e7d32;
+        }
+
+        .story-content p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 768px) {
+            #model-section {
+                flex-direction: column;
+            }
+            model-viewer {
+                height: 350px;
+            }
+        }
+
+        footer {
+            margin-top: auto;
+            width: 100%;
+            padding: 20px;
+            background-color: #e0e0e0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Terraformer T-800</h1>
+        <p>Un Paso hacia la Tierra Fértil. Visualización en Realidad Aumentada.</p>
+    </header>
+
+    <main>
+        <section id="model-section" class="section">
+            <!-- El componente <model-viewer> -->
+            <model-viewer 
+                src="terraformer_t800.glb" 
+                ios-src="terraformer_t800.usdz" 
+                ar 
+                ar-modes="webxr scene-viewer quick-look" 
+                camera-controls 
+                poster="poster.png" 
+                alt="Un modelo 3D del regenerador de suelos portátil Terraformer T-800" 
+                shadow-intensity="1">
+                
+                <button slot="ar-button" id="ar-button">
+                    Ver en tu Espacio (AR)
+                </button>
+
+                <div id="ar-prompt">
+                    <img src="https://modelviewer.dev/shared-assets/icons/hand.png">
+                </div>
+            </model-viewer>
+
+            <div class="story-content">
+                <h2>Nuestra Misión: Regenerar el Mundo</h2>
+                <p>En un futuro donde la desertificación amenaza la vida en la Tierra, nace el <strong>Terraformer T-800</strong>. Esta no es solo una pieza de tecnología avanzada; es un faro de esperanza portátil, diseñado para devolver la fertilidad a suelos degradados y estériles.</p>
+                <p>Imagina una pequeña cápsula, casi del tamaño de un termo de viaje, pero llena de vida y potencial. Cada T-800 es un ecosistema autosuficiente y concentrado. En su interior, alberga una mezcla metabólicamente activa de tierra de alta calidad, una cuidada selección de plantas nativas resistentes, y una comunidad diversa de microorganismos y hongos micorrícicos.</p>
+                <p>El diseño, que puedes ver en detalle en el modelo 3D, está inspirado en la eficiencia de la naturaleza. Los paneles externos son translúcidos y fotovoltaicos, recolectando energía solar para alimentar un micro-sistema de climatización y un dispensador automático de agua y nutrientes que mantiene el ecosistema interno en condiciones óptimas durante el transporte.</p>
+                <p>El proceso es revolucionario: una vez que el usuario despliega el T-800 en un área designada, la cápsula se abre gradualmente, liberando su contenido vital directamente sobre el suelo degradado. El agua y los nutrientes se dispensan para ayudar a las plantas a echar raíces profundas, mientras que los microorganismos y hongos comienzan su trabajo silencioso de reparar la estructura del suelo, secuestrar carbono y crear las condiciones necesarias para que la vida prospere de nuevo.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>¿Cómo funciona?</h2>
+            <p>La clave del Terraformer T-800 no es solo lo que lleva dentro, sino cómo lo entrega. El mecanismo de apertura es un despliegue controlado, inspirado en la apertura de una flor. El objetivo no es solo depositar el contenido, sino crear un microhábitat protector inmediato.</p>
+            <p>Al visualizar el modelo 3D en Realidad Aumentada, puedes ver la complejidad del diseño. Imagina ver este objeto en tu propia sala de estar o jardín, y observar cómo las diferentes partes se abren para revelar su tesoro interior: las plantas vibrantes y la rica tierra negra. Es una experiencia inmersiva que nos acerca a la realidad del desafío ambiental y la innovación que puede superarlo.</p>
+            <p>Este proyecto se presenta en este sitio web como un prototipo visual para demostrar el poder del diseño regenerativo y la tecnología para inspirar acción. Con el T-800, no solo estamos visualizando un modelo; estamos visualizando un futuro más verde.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Proyecto Terraformer. Visualización 3D y RA en la Web.</p>
+        <p>Modelo 3D y Sitio Web desarrollados con pasión por la sostenibilidad.</p>
+    </footer>
+
+</body>
+</html>
